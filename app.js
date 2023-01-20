@@ -1,19 +1,21 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: "https://beatmatcher-production.up.railway.app/",
+methods: ["GET", "POST"]
+}));
 
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {cors:{ origin: '*' }});
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://beatmatcher-production.up.railway.app/'); // * allows all, or you can limit by domain
-    res.setHeader('Access-Control-Allow-Methods', '*'); // Set which header methods you want to allow (GET,POST,PUT,DELETE,OPTIONS)
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // These 2 are recommended
-    res.setHeader('Access-Control-Expose-Headers', 'Set-Cookie'); // Required to allow the returned cookie to be set
-	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Required to allow auth credentials
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'https://beatmatcher-production.up.railway.app/'); // * allows all, or you can limit by domain
+//     res.setHeader('Access-Control-Allow-Methods', '*'); // Set which header methods you want to allow (GET,POST,PUT,DELETE,OPTIONS)
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // These 2 are recommended
+//     res.setHeader('Access-Control-Expose-Headers', 'Set-Cookie'); // Required to allow the returned cookie to be set
+// 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Required to allow auth credentials
+//     next();
+// });
 
 
 
