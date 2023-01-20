@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(cors({ origin: '*' }));
+
 const http = require("http").createServer(app);
-const socket = require("socket.io")(http); 
+const io = require("socket.io")(http, {cors:{ origin: '*' }});
+
 
 const port = process.env.PORT || 3000;
 http.listen(port, ()=>{
